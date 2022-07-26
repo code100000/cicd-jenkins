@@ -124,7 +124,16 @@ pipeline {
                     echo 'Running Push Docker Image'
                 }
             }
-        }                
+        }     
+        stage('Canary') {
+            when {
+                branch 'master'
+            }
+           steps {
+              input 'Deploy to Production ??'
+              milestone(1)
+           }          
+        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
